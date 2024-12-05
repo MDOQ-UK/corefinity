@@ -20,6 +20,11 @@ on:
       #   description: 'MDOQ API Key'
       #   required: true
       #   type: string
+    secrets:
+      MDOQ_API_KEY:
+        required: true
+      COREFINITY_API_KEY:
+        required: true
 
 permissions:
   contents: read
