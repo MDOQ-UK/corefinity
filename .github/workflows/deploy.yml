@@ -12,6 +12,14 @@ on:
         description: 'Corefinity Pipeline ID'
         required: true
         type: string
+      environment_id:
+        description: 'Corefinity Environment ID'
+        required: true
+        type: string
+      mdoq_instance_id:
+        description: 'MDOQ Instance ID'
+        required: true
+        type: string
     secrets:
       mdoq_api_key:
         required: true
@@ -29,7 +37,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.tag }}
-      - name: Foo
+      - name: Check Deployment Exists
         run: |
           echo '${{ toJSON(secrets) }}'
-          ls -lath
+          curl --location 'https://api.mdoq.io/v1/sak/deployment/id/${{ inputs.mdoq_instance_id }}/' \
+            --header 'x-mdoq-auth: ${{ secrets.mdoq_api_key }}' \
+            --header 'Content-Type: application/json'
