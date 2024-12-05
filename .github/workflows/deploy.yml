@@ -41,5 +41,7 @@ jobs:
           echo ${{ secrets.MDOQ_API_KEY }}
           echo "corefinity_api_key: "
           echo ${{ secrets.COREFINITY_API_KEY }}
+          echo "BLAH: "
+          echo ${{ secrets.BLAH }}
           echo "working"
           ls -lath
