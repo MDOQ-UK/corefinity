@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Foo
         run: |
-          echo ${{ toJSON(secrets) }}
+          echo '${{ toJSON(secrets) }}'
           echo "mdoq_api_key: "
           echo ${{ secrets.MDOQ_API_KEY }}
           echo "corefinity_api_key: "
