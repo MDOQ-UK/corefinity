@@ -20,11 +20,13 @@ on:
       #   description: 'MDOQ API Key'
       #   required: true
       #   type: string
-    # secrets:
-    #   MDOQ_API_KEY:
-    #     required: true
-    #   COREFINITY_API_KEY:
-    #     required: true
+    secrets:
+      mdoq_api_key:
+        required: true
+      corefinity_api_key:
+        required: true
+      github_token:
+        required: true
 
 permissions:
   contents: read
@@ -39,9 +41,9 @@ jobs:
         run: |
           echo '${{ toJSON(secrets) }}'
           echo "mdoq_api_key: "
-          echo ${{ secrets.MDOQ_API_KEY }}
+          echo ${{ secrets.mdoq_api_key }}
           echo "corefinity_api_key: "
-          echo ${{ secrets.COREFINITY_API_KEY }}
+          echo ${{ secrets.corefinity_api_key }}
           echo "BLAH: "
           echo ${{ secrets.BLAH }}
           echo "working"
