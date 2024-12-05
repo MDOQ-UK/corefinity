@@ -12,21 +12,11 @@ on:
         description: 'Corefinity Pipeline ID'
         required: true
         type: string
-      # corefinity_api_key:
-      #   description: 'Corefinity API Key'
-      #   required: true
-      #   type: string
-      # mdoq_api_key:
-      #   description: 'MDOQ API Key'
-      #   required: true
-      #   type: string
     secrets:
       mdoq_api_key:
         required: true
       corefinity_api_key:
         required: true
-      # github_token:
-      #   required: true
 
 permissions:
   contents: read
@@ -37,14 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
       - name: Foo
         run: |
           echo '${{ toJSON(secrets) }}'
-          echo "mdoq_api_key: "
-          echo ${{ secrets.mdoq_api_key }}
-          echo "corefinity_api_key: "
-          echo ${{ secrets.corefinity_api_key }}
-          echo "BLAH: "
-          echo ${{ secrets.BLAH }}
-          echo "working"
           ls -lath
