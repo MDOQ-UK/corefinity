@@ -12,14 +12,14 @@ on:
         description: 'Corefinity Pipeline ID'
         required: true
         type: string
-      corefinity_api_key:
-        description: 'Corefinity API Key'
-        required: true
-        type: string
-      mdoq_api_key:
-        description: 'MDOQ API Key'
-        required: true
-        type: string
+      # corefinity_api_key:
+      #   description: 'Corefinity API Key'
+      #   required: true
+      #   type: string
+      # mdoq_api_key:
+      #   description: 'MDOQ API Key'
+      #   required: true
+      #   type: string
 
 permissions:
   contents: read
@@ -32,5 +32,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Foo
         run: |
+          echo "mdoq_api_key: ${{ secrets.MDOQ_API_KEY }}"
+          echo "corefinity_api_key: ${{ secrets.COREFINITY_API_KEY }}"
           echo "working"
           ls -lath
