@@ -3,12 +3,28 @@ name: Check Module
 on:
   workflow_dispatch:
   workflow_call:
+    tag:
+      description: 'Tag to deploy'
+      required: true
+      type: string
+    pipeline_id:
+      description: 'Corefinity Pipeline ID'
+      required: true
+      type: string
+    corefinity_api_key:
+      description: 'Corefinity API Key'
+      required: true
+      type: string
+    mdoq_api_key:
+      description: 'MDOQ API Key'
+      required: true
+      type: string
 
 permissions:
   contents: read
 
 jobs:
-  deply:
+  deploy:
     name: "Deploy"
     runs-on: ubuntu-latest
     steps:
