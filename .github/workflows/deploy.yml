@@ -54,7 +54,6 @@ jobs:
           fi
       - name: Download Deployment
         run: |
-          # echo '${{ toJSON(secrets) }}'
           DEPLOYMENT=$(curl --silent --location 'https://api.mdoq.io/v1/sak/deployment/id/${{ inputs.mdoq_instance_id }}/' \
             --header 'x-mdoq-auth: ${{ secrets.mdoq_api_key }}' \
             --header 'Content-Type: application/json' \
@@ -69,7 +68,7 @@ jobs:
             --header 'x-mdoq-auth: ${{ secrets.mdoq_api_key }}' \
             --header 'Content-Type: application/json' \
             | jq -r '.presigned_url')
-            
+
           echo "download url: '${DOWNLOAD_URL}'"
 
           wget -O deployment.tgz "'${DOWNLOAD_URL}'"
