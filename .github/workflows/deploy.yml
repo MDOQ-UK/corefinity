@@ -72,7 +72,7 @@ jobs:
           set -xe
           echo "download url: '${DOWNLOAD_URL}'"
 
-          wget -O deployment.tgz "'${DOWNLOAD_URL}'"
+          wget -O deployment.tgz "${DOWNLOAD_URL}"
 
           ls -lath
         
