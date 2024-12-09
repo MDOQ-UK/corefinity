@@ -72,11 +72,23 @@ jobs:
           set -xe
           echo "download url: '${DOWNLOAD_URL}'"
 
-          wget -O deployment.tgz "${DOWNLOAD_URL}" -q --progress=bar:force
+          wget -O deployment.tgz "${DOWNLOAD_URL}" -q --progress=dot:mega
 
           mkdir deployment
 
           tar -xf deployment.tgz -C deployment
+
+          rm -rf var/view_preprocessed || true
+          mv deployment/var/view_preprocessed var/view_preprocessed
+
+          rm -rf pub/static || true
+          mv deployment/pub/static pub/static
+
+          rm -rf generated || true
+          mv deployment/generated generated
+
+          rm -rf vendor || true
+          mv deployment/vendor vendor
 
           ls -lath deployment/
           echo "----------------"
