@@ -69,6 +69,7 @@ jobs:
             --header 'Content-Type: application/json' \
             | jq -r '.presigned_url')
 
+          set -xe
           echo "download url: '${DOWNLOAD_URL}'"
 
           wget -O deployment.tgz "'${DOWNLOAD_URL}'"
