@@ -96,8 +96,7 @@ jobs:
           cd ../
           ls
           echo "--------------"
-          echo "github.ref: ${{ github.ref }}"
-          echo "github.ref_name: ${{ github.ref_name }}"
+          echo 'github: ${{ toJSON(github) }}'
 
       - name: Start Deployment Pieple (Corefinity)
         run: |
