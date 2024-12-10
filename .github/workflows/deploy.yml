@@ -93,9 +93,12 @@ jobs:
           rm -rf deployment
       - name: Make Deployment (for Corefinity)
         run: |
-          ls -lath
           cd ../
           ls
+          echo "--------------"
+          echo "github.ref: ${{ github.ref }}"
+          echo "github.ref_name: ${{ github.ref_name }}"
+
       - name: Start Deployment Pieple (Corefinity)
         run: |
           ls -lath
