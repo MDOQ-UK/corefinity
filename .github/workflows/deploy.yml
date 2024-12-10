@@ -39,7 +39,6 @@ jobs:
           ref: ${{ inputs.tag }}
       - name: Check Deployment Exists
         run: |
-          echo '${{ toJSON(secrets) }}'
           DEPLOYMENT=$(curl --silent --location 'https://api.mdoq.io/v1/sak/deployment/id/${{ inputs.mdoq_instance_id }}/' \
             --header 'x-mdoq-auth: ${{ secrets.mdoq_api_key }}' \
             --header 'Content-Type: application/json' \
@@ -69,7 +68,6 @@ jobs:
             --header 'Content-Type: application/json' \
             | jq -r '.presigned_url')
 
-          set -xe
           echo "download url: '${DOWNLOAD_URL}'"
 
           wget -O deployment.tgz "${DOWNLOAD_URL}" -q --progress=dot:mega
@@ -105,9 +103,10 @@ jobs:
           cd ../
           ls
           set -xe
+          echo "data: {\"name\": \"${{ inputs.tag }}\", \"git\": false, \"pipeline_id\": \"${{ inputs.pipeline_id }}\"};type=application/json"
           curl -i -X POST \
             -H "Accept: application/json" \
-            -H "Authorization: Bearer ${{ secrets.corefinity_api_key }}"
+            -H "Authorization: Bearer ${{ secrets.corefinity_api_key }}" \
             -H "Content-Type: multipart/mixed" \
             -F "blob=@deployment.tar.gz" \
             -F "{\"name\": \"${{ inputs.tag }}\", \"git\": false, \"pipeline_id\": \"${{ inputs.pipeline_id }}\"};type=application/json" \
