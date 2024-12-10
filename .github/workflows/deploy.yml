@@ -103,7 +103,6 @@ jobs:
           cd ../
           ls
           set -xe
-          echo "data: {\"name\": \"${{ inputs.tag }}\", \"git\": false, \"pipeline_id\": \"${{ inputs.pipeline_id }}\"};type=application/json"
           curl -i -X POST \
             -H "Accept: application/json" \
             -H "Authorization: Bearer ${{ secrets.corefinity_api_key }}" \
