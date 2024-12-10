@@ -108,6 +108,6 @@ jobs:
             -H "Accept: application/json" \
             -H "Authorization: Bearer ${{ secrets.corefinity_api_key }}" \
             -H "Content-Type: multipart/mixed" \
-            -F "blob=@deployment.tar.gz" \
+            -F "artifact=@deployment.tar.gz" \
             -F "{\"name\": \"${{ inputs.tag }}\", \"git\": false, \"pipeline_id\": \"${{ inputs.pipeline_id }}\"};type=application/json" \
             https://manage.corefinity.com/api/environments/${{ inputs.environment_id }}/deployments
