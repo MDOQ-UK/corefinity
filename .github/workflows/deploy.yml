@@ -93,13 +93,14 @@ jobs:
           rm -rf deployment
       - name: Make Deployment (for Corefinity)
         run: |
+          TARGET_DIR=$(basename "${PWD}")
+          echo "TARGET_DIR: ${TARGET_DIR}"
+
           cd ../
-          ls
-          echo "--------------"
-          echo 'github: ${{ toJSON(github) }}'
+          tar -czf deployment.tgz -C ${TARGET_DIR} .
 
       - name: Start Deployment Pieple (Corefinity)
         run: |
-          ls -lath
           cd ../
           ls
+          # curl -i -X POST -H "Content-Type: multipart/mixed" -F "blob=@/Users/username/Documents/bio.jpg" -F "metadata={\"edipi\":123456789,\"firstName\":\"John\",\"lastName\":\"Smith\",\"email\":\"john.smith@gmail.com\"};type=application/json" http://localhost:8080/api/v1/user/
