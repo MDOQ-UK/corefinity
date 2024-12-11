@@ -103,10 +103,9 @@ jobs:
           cd ../
           ls
           set -xe
-          curl -i -X POST \
-            -H "Accept: application/json" \
-            -H "Authorization: Bearer ${{ secrets.corefinity_api_key }}" \
-            -H "Content-Type: multipart/mixed" \
-            -F "artifact=@deployment.tar.gz" \
-            -F "{\"name\": \"${{ inputs.tag }}\", \"git\": false, \"pipeline_id\": \"${{ inputs.pipeline_id }}\"};type=application/json" \
-            https://manage.corefinity.com/api/environments/${{ inputs.environment_id }}/deployments
+          curl --location --request POST 'https://manage.corefinity.com/api/environments/${{ inputs.environment_id }}/deployments' \
+            --header 'Accept: application/json' \
+            --header 'Authorization: Bearer ${{ secrets.corefinity_api_key }}"' \
+            --form 'artifact=@"deployment.tar.gz"' \
+            --form 'name="${{ inputs.tag }}"' \
+            --form 'pipeline_id="${{ inputs.pipeline_id }}"'
