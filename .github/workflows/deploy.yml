@@ -105,7 +105,7 @@ jobs:
           set -xe
           curl --location --request POST 'https://manage.corefinity.com/api/environments/${{ inputs.environment_id }}/deployments' \
             --header 'Accept: application/json' \
-            --header 'Authorization: Bearer ${{ secrets.corefinity_api_key }}"' \
+            --header 'Authorization: Bearer ${{ secrets.corefinity_api_key }}' \
             --form 'artifact=@"deployment.tar.gz"' \
             --form 'name="${{ inputs.tag }}"' \
             --form 'pipeline_id="${{ inputs.pipeline_id }}"'
